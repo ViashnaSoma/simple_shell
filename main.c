@@ -38,8 +38,7 @@ int main(int argc, char **argv)
 			input[line_len - 1} = '\0';
 			if (input)
 			{
-				/*add parse function
-				*/
+				parsing(input, , argv[0]);
 			}
 			free(input);
 		}
