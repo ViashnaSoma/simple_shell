@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 			input[line_len - 1} = '\0';
 			if (input)
 			{
-				parsing(input, , argv[0]);
+				parsing(input, envir, argv[0]);
 			}
 			free(input);
 		}
