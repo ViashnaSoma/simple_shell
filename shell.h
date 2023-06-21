@@ -27,4 +27,5 @@ typedef struct command
 	char *normal;
 } command;
 
+void parsing(char *input, char **envrn, char *normal);
 #endif
