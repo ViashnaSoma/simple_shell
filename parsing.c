@@ -18,5 +18,15 @@ void parsing(char *input, char **envrn, char *normal)
 	char *holder;
 	command *command_struct = malloc(sizeof(command));
 
+	command_struct->argc = 0;
+	holder = strtok(input, space);
+	(command_struct->argv)[command_struct->argc] = holder;
+
+	while (holder)
+	{
+		command_struct->argc++;
+		holder = strtok(NULL, space);
+		(command_struct->argv)[command_struct->argc] = holder;
+	}
 	
 }
