@@ -14,4 +14,9 @@
 
 void parsing(char *input, char **envrn, char *normal)
 {
+	const char *space = " ";
+	char *holder;
+	command *command_struct = malloc(sizeof(command));
+
+	
 }
