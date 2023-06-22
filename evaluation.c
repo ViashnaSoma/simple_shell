@@ -6,7 +6,8 @@
 /**
  * Implement your logic to check if the command is a built-in command
  * Implement your logic to execute the built-in command based on the provided 'command' structure
- * 
+ * command not there show "invalid comman"
+ *
  * Return 1 if it is a built-in command, 0 otherwise
  */
 int isBuiltInCommand(const char *cmd) 
