@@ -22,17 +22,17 @@ int check_file(char *file)
 }
 
 /**
- * get_len - get length of string
- * @s: string to be checked.
- * Return: length of string
+ * get_len - retrieves string length
+ * @s: pointer to string to be checked
+ * Return: string length
  */
 size_t get_len(char *s)
 {
-	size_t count = 0;
+	size_t i = 0;
 
-	while (s[count] != 0)
+	while (s[i] != 0)
 	{
-		count++;
+		i++;
 	}
-	return (count);
+	return (i);
 }
