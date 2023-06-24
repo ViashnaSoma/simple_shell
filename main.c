@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 {
 	int byte_read;
 	char *command;
-	const char *prompt = "sp_shell> ";
+	const char *prompt = "spshell> ";
 	size_t nbytes = sizeof(prompt), line_size = 1024;
 
 	if (argc > 1)
