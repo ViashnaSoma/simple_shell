@@ -1,47 +1,43 @@
-#include <sys/wait.h>
-#include "shell.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/wait.h>
+#include "shell.h"
 
 /**
- * main - point of entry for shell
- * @argc: argument count
- * @argv: argument vector
- * Return: 0 for failure
+ * main - Entry point
+ * @argc: number of arguments
+ * @argv: array of pointers to arguments
+ * Return: void.
  */
 
 int main(int argc, char **argv)
 {
-	const char *display = "simpleshell> ";
-	char *input;
-	size_t len_display = sizeof(display), max_line_size = 1024;
-	int line_len;
+	int nread;
+	char *command;
+	const char *prompt = "myshell> ";
+	size_t nbytes = sizeof(prompt), line_size = 1024;
 
 	if (argc > 1)
 	{
 		exit(0);
 	}
-
-	for (;;)
+	while (1)
 	{
-		input = malloc(200);
-		write(0, display, len_display);
-		line_len = getline(&input, &max_line_size, stdin);
-		if (line_len == -1)
+		command = malloc(100);
+		write(STDIN_FILENO, prompt, nbytes);
+		nread = getline(&command, &line_size, stdin);
+		if (nread == -1)
 		{
-			free(input);
+			free(command);
 			return (0);
 		}
-		else if (line_len > 1)
+		else if (nread > 1)
 		{
-			input[line_len - 1} = '\0';
-			if (input)
-			{
-				parsing(input, envir, argv[0]);
-			}
-			free(input);
+			command[nread - 1] = '\0';
+			if (command)
+				parse(command, environ, argv[0]);
+			free(command);
 		}
 	}
-		
 }
