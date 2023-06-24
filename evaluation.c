@@ -1,10 +1,11 @@
 #include "shell.h"
+#include <unistd.h>
+#include <stdio.h>
 
 /**
- * eval - Determines whether the command is builtin,
- * system or invalid and takes action.
- * @cmd_struct: command structure.
- * Return: void.
+ * eval - calculates if it is built in or system command and takes action
+ * @cmd_struct: structure of command
+ * Return: no return value
  */
 
 void eval(cmd *cmd_struct)
@@ -13,7 +14,7 @@ void eval(cmd *cmd_struct)
 
 	void (*func)(cmd *cmd_struct) = is_builtin(cmd_struct->argv[0]);
 
-	if (func)
+	if (func != NULL)
 	{
 		func(cmd_struct);
 	}
