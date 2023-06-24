@@ -28,4 +28,6 @@ typedef struct command
 } command;
 
 void parsing(char *input, char **envrn, char *normal);
+void eval(command *command_struct);
+void exec(command_struct, new_path);
 #endif
