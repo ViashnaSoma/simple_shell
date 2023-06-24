@@ -41,12 +41,12 @@ typedef struct builtins
 } builtins_table;
 
 void parse(char *command, char **env, char *home);
+void eval(cmd *cmd_struct);
 void execute(struct cmd *cmd_struct, char *new_path);
-void (*is_builtin(char *command))(cmd *cmd_struct);
 void my_cd(cmd *cmd_struct);
+void (*is_builtin(char *command))(cmd *cmd_struct);
 void my_exit(cmd *cmd_struct);
 void my_env(cmd *cmd_struct);
-void eval(cmd *cmd_struct);
 
 int _strcmp(char *s1, char *s2);
 char *get_env_var(char **environ, char *var);
