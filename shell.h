@@ -1,61 +1,59 @@
-#ifndef _SHELL_
-#define _SHELL_
-#define MAXARGS 128
+#ifndef SIMPLE_SHELL
+#define SIMPLE_SHELL
+#define ARGS_LIMIT 128
 
-#include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
+#include <unistd.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 
 extern char **environ;
 
 /**
- * struct cmd - holds all arguments and is most important.
- * cmd: command.
- * @home: home.
- * @argc: number of args
- * @argv: array of pointers to args
- * @env: array of pointers to env vars
- * Description: structure for commands.
+ * struct cmd - contains important arguments
+ * cmd: the command
+ * @env: pointers in array to environmental vars
+ * @home: normal interface
+ * @argv: arg array
+ * @argc: arg count
+ * Description: command structure
  */
 typedef struct cmd
 {
 	int argc;
-	char *argv[MAXARGS];
-	char **env;
 	char *home;
+	char **env;
+	char *argv[ARGS_LIMIT];
 } cmd;
 
 /**
- * struct builtins - defines what our builtin functions
- * @instruction: instructions
- * @func: function.
- * Descriiption: structure or builtin commands.
+ * struct builtins - built in func definitions
+ * @func: the actual function
+ * @instruction: gives the instructs
+ * Descriiption: built in commands or gives structure
  */
 typedef struct builtins
 {
-	char *instruction;
 	void (*func)(cmd *);
+	char *instruction;
 } builtins_table;
 
+void my_exit(cmd *cmd_struct);
+void my_cd(cmd *cmd_struct);
 void parse(char *command, char **env, char *home);
 void execute(struct cmd *cmd_struct, char *new_path);
 void (*is_builtin(char *command))(cmd *cmd_struct);
-void my_cd(cmd *cmd_struct);
-void my_exit(cmd *cmd_struct);
-void my_env(cmd *cmd_struct);
 void eval(cmd *cmd_struct);
+void my_env(cmd *cmd_struct);
 
-/* String functions that we can write to assist us */
+char *check_var(char *env_var, char *var);
+char *_strcat(char *dest, char *src);
+char *handle_path(cmd *cmd_struct, char *checkpath);
 int _strcmp(char *s1, char *s2);
 char *get_env_var(char **environ, char *var);
-char *check_var(char *env_var, char *var);
-char *handle_path(cmd *cmd_struct, char *checkpath);
-char *_strcat(char *dest, char *src);
 
-/* Helpers */
-int check_file(char *file);
 size_t get_len(char *s);
+int check_file(char *file);
 #endif
