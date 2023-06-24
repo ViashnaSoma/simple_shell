@@ -47,25 +47,25 @@ int _strcmp(char *s1, char *s2)
 	return (o);
 }
 /**
- * check_var - checks environment variable.
- * @env_var: environment variable parameter.
- * @var: variable parameter.
- * Return: environmen variable
+ * check_var - performs checks on environ var
+ * @env_var: parameter for environ var
+ * @var: parameter for var
+ * Return: env_var
  */
 
 char *check_var(char *env_var, char *var)
 {
-	int letter = 0;
+	int count = 0;
 
-	while (var[letter] != 0)
+	while (var[count] != 0)
 	{
-		if (env_var[letter] != var[letter])
+		if (env_var[count] != var[count])
 		{
 			return (NULL);
 		}
-		letter++;
+		count = count +1;
 	}
-	return (&env_var[letter + 1]);
+	return (&env_var[count + 1]);
 }
 
 /**
