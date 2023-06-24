@@ -106,27 +106,26 @@ char *handle_path(cmd *cmd_struct, char *checkpath)
 }
 
 /**
- * _strcat - Copies string from source
- * pointer and appends to destination pointer
- * @dest: String pointer for destination
- * @src: String pointer for source
- * Return: dest - string pointer to destination
+ * _strcat - Appends all characters from src to dest
+ * @dest: destination string pointer
+ * @src: source string pointer
+ * Return: dest - destination string pointer
  */
 
 char *_strcat(char *dest, char *src)
 {
-	int len_dest = 0, len_src = 0;
-
-	while (dest[len_dest] != 0)
+	int len_d = 0, len_s = 0;
+		
+	while (dest[len_d] != 0)
 	{
-		len_dest++;
+		len_d++;
 	}
-	while (src[len_src] != 0)
+	while (src[len_s] != 0)
 	{
-		dest[len_dest] = src[len_src];
-		len_dest++;
-		len_src++;
+		dest[len_d] = src[len_s];
+		len_d++;
+		len_s++;
 	}
-	dest[len_dest] = 0;
+	dest[len_d] = 0;
 	return (dest);
 }
