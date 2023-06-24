@@ -1,21 +1,21 @@
+#include "shell.h"
+#include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/wait.h>
-#include "shell.h"
 
 /**
- * main - Entry point
- * @argc: number of arguments
- * @argv: array of pointers to arguments
- * Return: void.
+ * main - starts the shell
+ * @argc: arg count
+ * @argv: arg array
+ * Return: no return value
  */
 
 int main(int argc, char **argv)
 {
-	int nread;
+	int byte_read;
 	char *command;
-	const char *prompt = "myshell> ";
+	const char *prompt = "simpleshell> ";
 	size_t nbytes = sizeof(prompt), line_size = 1024;
 
 	if (argc > 1)
@@ -26,15 +26,15 @@ int main(int argc, char **argv)
 	{
 		command = malloc(100);
 		write(STDIN_FILENO, prompt, nbytes);
-		nread = getline(&command, &line_size, stdin);
-		if (nread == -1)
+		byte_read = getline(&command, &line_size, stdin);
+		if (byte_read == -1)
 		{
 			free(command);
 			return (0);
 		}
-		else if (nread > 1)
+		else if (byte_read > 1)
 		{
-			command[nread - 1] = '\0';
+			command[byte_read - 1] = '\0';
 			if (command)
 				parse(command, environ, argv[0]);
 			free(command);
