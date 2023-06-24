@@ -44,8 +44,8 @@ void parse(char *command, char **env, char *home);
 void execute(struct cmd *cmd_struct, char *new_path);
 void (*is_builtin(char *command))(cmd *cmd_struct);
 void my_cd(cmd *cmd_struct);
-void my_exit(cmd *cmd_struct);
-void my_env(cmd *cmd_struct);
+void shell_exit(cmd *command_struct);
+void shell_env(cmd *command_struct);
 void eval(cmd *cmd_struct);
 
 /* String functions that we can write to assist us */
