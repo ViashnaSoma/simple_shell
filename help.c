@@ -1,22 +1,23 @@
 #include "shell.h"
+#include <stdio.h>
 
 /**
- * check_file - checks the file.
- * @file: file to be checked.
- * Return: 1 if file found, 0 otherwise
+ * check_file - performs file checks
+ * @file: parsed file to be checked
+ * Return: 1 for success if file found, 0 for failure
  */
 
 int check_file(char *file)
 {
-	struct stat st;
+	struct stat check;
 
-	if (stat(file, &st) == 0)
+	if (stat(file, &check) != 0)
 	{
-		return (1);
+		return (0);
 	}
 	else
 	{
-		return (0);
+		return (1);
 	}
 }
 
