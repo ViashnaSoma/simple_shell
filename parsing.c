@@ -28,5 +28,16 @@ void parsing(char *input, char **envrn, char *normal)
 		holder = strtok(NULL, space);
 		(command_struct->argv)[command_struct->argc] = holder;
 	}
-	
+	command_struct->envrn = envrn;
+	command_struct->normal = normal;
+	if (command_struct->argc)
+	{
+		evaluation(command_struct);
+		free(command_struct);
+	}
+	else
+	{
+		exit(0);
+	}
+}
 }
