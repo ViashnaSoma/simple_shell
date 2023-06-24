@@ -13,20 +13,20 @@
 
 void parse(char *command, char **env, char *home)
 {
+	char *holder;
 	cmd *command_struct = malloc(sizeof(cmd));
-	char *token;
-	const char *delim = " ";
+	const char *space = " ";
 
 	command_struct->argc = 0;
 	
-	token = strtok(command, delim);
-	/* Add token to argv list for execve */
-	(command_struct->argv)[command_struct->argc] =  token;
-	while (token != NULL)
+	holder = strtok(command, space);
+	
+	(command_struct->argv)[command_struct->argc] =  holder;
+	while (holder)
 	{
 		command_struct->argc++;
-		token = strtok(NULL, delim);
-		(command_struct->argv)[command_struct->argc] =  token;
+		holder = strtok(NULL, space);
+		(command_struct->argv)[command_struct->argc] =  holder;
 	}
 	command_struct->env = env;
 	command_struct->home = home;
