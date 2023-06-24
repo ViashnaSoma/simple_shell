@@ -21,7 +21,7 @@ void parse(char *command, char **env, char *home)
 	
 	token = strtok(command, delim);
 	/* Add token to argv list for execve */
-	(command_struct->argv)[cmd_struct->argc] =  token;
+	(command_struct->argv)[command_struct->argc] =  token;
 	while (token != NULL)
 	{
 		command_struct->argc++;
