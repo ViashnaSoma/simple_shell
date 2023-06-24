@@ -14,9 +14,9 @@
 int main(int argc, char **argv)
 {
 	char *input;
-	int byte_read;
-	const char *prompt = "spshell> ";
-	size_t nbytes = sizeof(prompt), line_size = 1024;
+	int read_byte;
+	const char *display = "spshell> ";
+	size_t num_bytes = sizeof(display), line_size = 1024;
 
 	if (argc > 1)
 	{
@@ -25,16 +25,16 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		input = malloc(100);
-		write(STDIN_FILENO, prompt, nbytes);
-		byte_read = getline(&input, &line_size, stdin);
-		if (byte_read == -1)
+		write(0, display, num_bytes);
+		read_byte = getline(&input, &line_size, stdin);
+		if (read_byte == -1)
 		{
 			free(input);
 			return (0);
 		}
-		else if (byte_read > 1)
+		else if (read_byte > 1)
 		{
-			input[byte_read - 1] = '\0';
+			input[read_byte - 1] = '\0';
 			if (input)
 				parse(input, environ, argv[0]);
 			free(input);
