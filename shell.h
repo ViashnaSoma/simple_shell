@@ -48,11 +48,11 @@ void (*is_builtin(char *command))(cmd *cmd_struct);
 void my_exit(cmd *cmd_struct);
 void my_env(cmd *cmd_struct);
 
-int _strcmp(char *s1, char *s2);
 char *get_env_var(char **environ, char *var);
 char *check_var(char *env_var, char *var);
 char *handle_path(cmd *cmd_struct, char *checkpath);
 char *_strcat(char *dest, char *src);
+int _strcmp(char *s1, char *s2);
 
 int check_file(char *file);
 size_t get_len(char *s);
