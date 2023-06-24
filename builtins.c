@@ -11,8 +11,8 @@ void (*is_builtin(char *command))(cmd * cmd_struct)
 	char *builtin_command;
 
 	builtins_table my_builtins[] = {
-		{"exit", shell_exit},
-		{"env", shell_env},
+		{"exit", my_exit},
+		{"env", my_env},
 		{NULL, NULL}
 	};
 	for (count = 0; my_builtins[count].instruction; count++)
