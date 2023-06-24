@@ -2,11 +2,11 @@
 #define SIMPLE_SHELL
 #define ARG_LIMIT 128
 
+#include <unistd.h>
 #include <stdio.h>
+#include <sys/types.h>
 #include <stdlib.h>
 #include <sys/wait.h>
-#include <unistd.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 
 extern char **environ;
