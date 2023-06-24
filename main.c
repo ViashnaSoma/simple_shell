@@ -16,17 +16,17 @@ int main(int argc, char **argv)
 	char *input;
 	int read_byte;
 	const char *display = "spshell> ";
-	size_t num_bytes = sizeof(display), line_size = 1024;
+	size_t num_bytes = sizeof(display), line_len = 1024;
 
 	if (argc > 1)
 	{
 		exit(0);
 	}
-	while (1)
+	for (;;)
 	{
 		input = malloc(100);
 		write(0, display, num_bytes);
-		read_byte = getline(&input, &line_size, stdin);
+		read_byte = getline(&input, &line_len, stdin);
 		if (read_byte == -1)
 		{
 			free(input);
