@@ -1,43 +1,49 @@
-#include "shell.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "shell.h"
 
 /**
- * parsing - separates words from input based on
- * spaces and sends for evaluation
- * @input: string that needs to be tokenised
- * @envrn: the global environment
- * @normal: name of executable file
- * Return: nothing
+ * parse - Tokenizes the string (splits words based on
+ * space character) and sends to eval.
+ * @command: command to be tokenized.
+ * @env: global environment
+ * @home: filename of executable
+ * Return: no return
  */
 
-void parsing(char *input, char **envrn, char *normal)
+void parse(char *command, char **env, char *home)
 {
-	const char *space = " ";
-	char *holder;
-	command *command_struct = malloc(sizeof(command));
+	cmd *cmd_struct = malloc(sizeof(cmd));
+	char *token;
+	const char *delim = " ";
 
-	command_struct->argc = 0;
-	holder = strtok(input, space);
-	(command_struct->argv)[command_struct->argc] = holder;
-
-	while (holder)
+	cmd_struct->argc = 0;
+	/* Tokenize command string */
+	token = strtok(command, delim);
+	/* Add token to argv list for execve */
+	(cmd_struct->argv)[cmd_struct->argc] =  token;
+	while (token != NULL)
 	{
-		command_struct->argc++;
-		holder = strtok(NULL, space);
-		(command_struct->argv)[command_struct->argc] = holder;
+		cmd_struct->argc++;
+		token = strtok(NULL, delim);
+		(cmd_struct->argv)[cmd_struct->argc] =  token;
 	}
-	command_struct->envrn = envrn;
-	command_struct->normal = normal;
-	if (command_struct->argc)
+	cmd_struct->env = env;
+	cmd_struct->home = home;
+	/**
+	 * Ensure Command is tokenized
+	 * while (cmd_struct->argv[count] != NULL){
+	 * printf("%s\n", cmd_struct->argv[count]);
+	 * count++;}
+	*/
+	if (cmd_struct->argc)
 	{
-		evaluation(command_struct);
-		free(command_struct);
+		eval(cmd_struct);
+		free(cmd_struct);
 	}
 	else
 	{
 		exit(0);
 	}
-}
 }
