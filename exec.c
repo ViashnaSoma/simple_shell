@@ -1,24 +1,25 @@
 #include "shell.h"
+#include <stdio.h>
 
 /**
- * execute - Executes system calls
- * @cmd_struct: command structure
- * @newpath: path of file
- * Return: no return
+ * execute - takes action on input
+ * @cmd_struct: structure of command
+ * @newpath: file path
+ * Return: nothing
  */
 
 void execute(cmd *cmd_struct, char *newpath)
 {
-	pid_t child_pid;
+	pid_t check_pid;
 
 	if (check_file(newpath))
 	{
-		while ((child_pid = fork()) < 0)
+		while ((check_pid = fork()) < 0)
 		{
 			perror("fork error");
 			exit(1);
 		}
-		if (child_pid == 0)
+		if (check_pid == 0)
 		{
 			if (execve(newpath, cmd_struct->argv, cmd_struct->env) < 0)
 			{
@@ -28,7 +29,7 @@ void execute(cmd *cmd_struct, char *newpath)
 		}
 		else
 		{
-			wait(&child_pid);
+			wait(&check_pid);
 		}
 	}
 	else if (execve(newpath, cmd_struct->argv, cmd_struct->env) < 0)
