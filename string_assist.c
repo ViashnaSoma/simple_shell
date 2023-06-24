@@ -1,27 +1,26 @@
 #include "shell.h"
+#include <stdio.h>
 
 /**
- * _strcmp - Compares 2 strings
- * @s1: String 1 pointer
- * @s2: String 2 pointer
+ * _strcmp - takes two strings and compares
+ * @s1: pointer to string 1
+ * @s2: pointer to string 2
  * Return: -15 - for s1 > s2, 15 for s2 > s1, 0 for s1 = s2
  */
 
 int _strcmp(char *s1, char *s2)
 {
-	int i = 0, op = 0;
+	int i = 0, o = 0;
 
-	while (op == 0)
+	while (o == 0)
 	{
-		if (!s1[i] && !s2[i])
-		{
+		if ((*(s1 + i) == '\0') && (*(s2 + i) == '\0'))
 			break;
-		}
-		op = s1[i] - s2[i];
+		o = *(s1 + i) - *(s2 + i);
 		i++;
 	}
 
-	return (op);
+	return (o);
 }
 
 /**
