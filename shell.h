@@ -1,6 +1,6 @@
 #ifndef SIMPLE_SHELL
 #define SIMPLE_SHELL
-#define MAXARGS 128
+#define ARG_LIMIT 128
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,7 +23,7 @@ extern char **environ;
 typedef struct cmd
 {
 	int argc;
-	char *argv[MAXARGS];
+	char *argv[ARG_LIMIT];
 	char **env;
 	char *home;
 } cmd;
