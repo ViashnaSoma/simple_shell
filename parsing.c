@@ -28,8 +28,8 @@ void parse(char *command, char **env, char *home)
 		holder = strtok(NULL, space);
 		(command_struct->argv)[command_struct->argc] =  holder;
 	}
-	command_struct->env = env;
 	command_struct->home = home;
+	command_struct->env = env;
 	
 	if (command_struct->argc)
 	{
