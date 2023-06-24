@@ -36,7 +36,9 @@ int main(int argc, char **argv)
 		{
 			input[read_byte - 1] = '\0';
 			if (input)
+			{
 				parse(input, environ, argv[0]);
+			}
 			free(input);
 		}
 	}
