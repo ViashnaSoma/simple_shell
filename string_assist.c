@@ -2,28 +2,6 @@
 #include <stdio.h>
 
 /**
- * _strcmp - takes two strings and compares
- * @s1: pointer to string 1
- * @s2: pointer to string 2
- * Return: -15 - for s1 > s2, 15 for s2 > s1, 0 for s1 = s2
- */
-
-int _strcmp(char *s1, char *s2)
-{
-	int i = 0, o = 0;
-
-	while (o == 0)
-	{
-		if ((*(s1 + i) == '\0') && (*(s2 + i) == '\0'))
-			break;
-		o = *(s1 + i) - *(s2 + i);
-		i++;
-	}
-
-	return (o);
-}
-
-/**
  * get_env_var - gets environment variable.
  * @environ: environment parameter.
  * @var: variable parameter.
@@ -45,6 +23,27 @@ char *get_env_var(char **environ, char *var)
 	return (NULL);
 }
 
+/**
+ * _strcmp - takes two strings and compares
+ * @s1: pointer to string 1
+ * @s2: pointer to string 2
+ * Return: -15 - for s1 > s2, 15 for s2 > s1, 0 for s1 = s2
+ */
+
+int _strcmp(char *s1, char *s2)
+{
+	int i = 0, o = 0;
+
+	while (o == 0)
+	{
+		if ((*(s1 + i) == '\0') && (*(s2 + i) == '\0'))
+			break;
+		o = *(s1 + i) - *(s2 + i);
+		i++;
+	}
+
+	return (o);
+}
 /**
  * check_var - checks environment variable.
  * @env_var: environment variable parameter.
