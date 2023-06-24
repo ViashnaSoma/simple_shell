@@ -54,6 +54,6 @@ char *handle_path(cmd *cmd_struct, char *checkpath);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 
-int check_file(char *file);
 size_t get_len(char *s);
+int check_file(char *file);
 #endif
