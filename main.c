@@ -13,10 +13,10 @@
 
 int main(int argc, char **argv)
 {
+	char *input;
 	int byte_read;
-	char *command;
-	const char *prompt = "spshell> ";
 	size_t nbytes = sizeof(prompt), line_size = 1024;
+	const char *prompt = "spshell> ";
 
 	if (argc > 1)
 	{
@@ -24,20 +24,20 @@ int main(int argc, char **argv)
 	}
 	while (1)
 	{
-		command = malloc(100);
+		input = malloc(100);
 		write(STDIN_FILENO, prompt, nbytes);
-		byte_read = getline(&command, &line_size, stdin);
+		byte_read = getline(&input, &line_size, stdin);
 		if (byte_read == -1)
 		{
-			free(command);
+			free(input);
 			return (0);
 		}
 		else if (byte_read > 1)
 		{
-			command[byte_read - 1] = '\0';
-			if (command)
-				parse(command, environ, argv[0]);
-			free(command);
+			input[byte_read - 1] = '\0';
+			if (input)
+				parse(input, environ, argv[0]);
+			free(input);
 		}
 	}
 }
