@@ -1,38 +1,38 @@
 #include "shell.h"
 
 /**
- * exec - executes the system calls
- * @command_struct: structure of command
- * @newpath: file path
- * Return: nothing
+ * execute - Executes system calls
+ * @cmd_struct: command structure
+ * @newpath: path of file
+ * Return: no return
  */
 
-void exec(command_struct, new_path)
+void execute(cmd *cmd_struct, char *newpath)
 {
-	pid_t check_pid;
+	pid_t child_pid;
 
 	if (check_file(newpath))
 	{
-		while ((check_pid = fork()) < 0)
+		while ((child_pid = fork()) < 0)
 		{
 			perror("fork error");
 			exit(1);
 		}
-		if (check_pid == 0)
+		if (child_pid == 0)
 		{
-			if (execve(newpath, command_struct->argv, command_struct->envrn) < 0)
+			if (execve(newpath, cmd_struct->argv, cmd_struct->env) < 0)
 			{
-				perror(command_struct->normal);
+				perror(cmd_struct->home);
 				exit(1);
 			}
 		}
 		else
 		{
-			wait(&check_pid);
+			wait(&child_pid);
 		}
 	}
-	else if (execve(newpath, command_struct->argv, command_struct->envrn) < 0)
+	else if (execve(newpath, cmd_struct->argv, cmd_struct->env) < 0)
 	{
-		perror(command_struct->normal);
+		perror(cmd_struct->home);
 	}
 }
