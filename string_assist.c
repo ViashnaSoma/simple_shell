@@ -2,23 +2,25 @@
 #include <stdio.h>
 
 /**
- * get_env_var - gets environment variable.
- * @environ: environment parameter.
- * @var: variable parameter.
- * Return: environment variable.
+ * get_env_var - retrieves the env var
+ * @environ: parameter for environ
+ * @var: parameter for var
+ * Return: var for environ
  */
 
 char *get_env_var(char **environ, char *var)
 {
-	int count = 0;
-	char *env_var, *ret_var;
+	char *var_environ, *end_var;
+	int i = 0;
 
-	while ((env_var = environ[count]) != NULL)
+	while ((var_environ = environ[i]) != NULL)
 	{
-		ret_var = check_var(env_var, var);
-		if (ret_var)
-			return (ret_var);
-		count++;
+		end_var = check_var(var_environ, var);
+		if (end_var)
+		{
+			return (end_var);
+		}
+		i++;
 	}
 	return (NULL);
 }
@@ -104,27 +106,27 @@ char *handle_path(cmd *cmd_struct, char *checkpath)
 }
 
 /**
- * _strcat - Copies string from source
- * pointer and appends to destination pointer
+ * _strncat - Appends n characters from src to dest
  * @dest: String pointer for destination
  * @src: String pointer for source
+ * @n: Number of characters to append from src
  * Return: dest - string pointer to destination
  */
 
-char *_strcat(char *dest, char *src)
+char *_strncat(char *dest, char *src, int n)
 {
-	int len_dest = 0, len_src = 0;
+	int len_d = 0, len_s = 0;
 
-	while (dest[len_dest] != 0)
+	while (*(dest + len_d) != 0)
 	{
-		len_dest++;
+		len_d++;
 	}
-	while (src[len_src] != 0)
+	while (*(src + len_s) != 0 && len_s < n)
 	{
-		dest[len_dest] = src[len_src];
-		len_dest++;
-		len_src++;
+		*(dest + len_d) = *(src + len_s);
+		len_d++;
+		len_s++;
 	}
-	dest[len_dest] = 0;
+	*(dest + len_d) = 0;
 	return (dest);
 }
