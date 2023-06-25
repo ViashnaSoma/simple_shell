@@ -18,9 +18,9 @@ void parse(char *command, char **env, char *home)
 	const char *space = " ";
 
 	command_struct->argc = 0;
-	
+
 	holder = strtok(command, space);
-	
+
 	(command_struct->argv)[command_struct->argc] =  holder;
 	while (holder)
 	{
@@ -30,7 +30,7 @@ void parse(char *command, char **env, char *home)
 	}
 	command_struct->home = home;
 	command_struct->env = env;
-	
+
 	if (command_struct->argc)
 	{
 		eval(command_struct);
