@@ -63,7 +63,7 @@ char *check_var(char *env_var, char *var)
 		{
 			return (NULL);
 		}
-		count = count +1;
+		count = count + 1;
 	}
 	return (&env_var[count + 1]);
 }
@@ -115,7 +115,7 @@ char *handle_path(cmd *cmd_struct, char *checkpath)
 char *_strcat(char *dest, char *src)
 {
 	int len_d = 0, len_s = 0;
-		
+
 	while (dest[len_d] != 0)
 	{
 		len_d++;
