@@ -1,9 +1,9 @@
 #include "shell.h"
+
 /**
  * my_exit - exits the shell
  * @cmd_struct: Structure containing args and env
  */
-
 void my_exit(cmd *cmd_struct)
 {
 	int count = 0;
